@@ -2,44 +2,25 @@ package javaActivity;
 
 import java.util.ArrayList;
 
-/**
- * Represents all the staff of the company.
- *
- * Manages two separate lists:
- *   - employees    : regular employees and salespeople
- *   - responsibles : managers with subordinates
- *
- * Note: I chose to keep Responsible objects out of the employees list
- * to avoid counting their salaries twice in totalSalaries().
- * The addEmployee() method automatically routes each object to the
- * correct list using instanceof.
- */
+// Manages all the company staff
+// Responsibles are in a separate list to avoid counting their salary twice
 public class Staff {
 
-    private ArrayList<Employee>    employees;
-    private ArrayList<Responsible> responsibles;
+    private ArrayList<Employee>    employees;    // regular employees + salespeople
+    private ArrayList<Responsible> responsibles; // managers
 
-    /**
-     * Default constructor — initializes both empty lists.
-     */
+    // Constructor — creates two empty lists
     public Staff() {
         this.employees    = new ArrayList<>();
         this.responsibles = new ArrayList<>();
     }
 
-    // --- Getters ---
-
+    // Getters
     public ArrayList<Employee>    getEmployees()    { return employees; }
     public ArrayList<Responsible> getResponsibles() { return responsibles; }
 
-    /**
-     * Adds an employee to the appropriate list based on their actual type.
-     * - If Responsible  -> goes into the responsibles list
-     * - Otherwise       -> goes into the employees list
-     * Duplicates (same ID) are silently ignored with a warning.
-     *
-     * @param e the Employee to add (can be any subtype)
-     */
+    // Adds an employee to the right list based on their type (instanceof)
+    // Prints a warning if the ID already exists
     public void addEmployee(Employee e) {
         if (e == null) return;
 
@@ -55,12 +36,7 @@ public class Staff {
         }
     }
 
-    /**
-     * Adds a Responsible directly to the responsibles list.
-     * Ignores duplicates.
-     *
-     * @param r the Responsible to add
-     */
+    // Adds a responsible to the responsibles list
     public void addResponsible(Responsible r) {
         if (r == null) return;
         if (!responsibles.contains(r)) {
@@ -71,13 +47,7 @@ public class Staff {
         }
     }
 
-    /**
-     * Searches for an employee by ID across both lists.
-     * Returns null and prints a message if not found.
-     *
-     * @param id the employee ID to look for
-     * @return the matching Employee (or subtype), or null
-     */
+    // Searches for an employee by ID in both lists, returns null if not found
     public Employee searchEmployee(int id) {
         for (Employee emp : employees) {
             if (emp.getId() == id) return emp;
@@ -89,10 +59,7 @@ public class Staff {
         return null;
     }
 
-    /**
-     * Displays information for every member of staff.
-     * First all regular employees, then all responsibles.
-     */
+    // Prints all employees then all responsibles
     public void displayStaff() {
         System.out.println("\n========== EMPLOYEES ==========");
         if (employees.isEmpty()) {
@@ -113,10 +80,7 @@ public class Staff {
         }
     }
 
-    /**
-     * Displays the full hierarchy for each responsible:
-     * their info + the list of their direct subordinates.
-     */
+    // Prints the hierarchy: each responsible with their subordinates
     public void displayHierarchy() {
         System.out.println("\n========== HIERARCHY ==========");
         if (responsibles.isEmpty()) {
@@ -129,12 +93,7 @@ public class Staff {
         }
     }
 
-    /**
-     * Calculates the total monthly salary to be paid to all staff.
-     * Sums salaries from both lists.
-     *
-     * @return total monthly salary in euros
-     */
+    // Calculates the total monthly payroll
     public double totalSalaries() {
         double total = 0.0;
         for (Employee emp : employees) {

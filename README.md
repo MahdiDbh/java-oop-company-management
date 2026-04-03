@@ -1,7 +1,5 @@
 # Company Management System — Java OOP
 
-> **ESEO Paris-Vélizy · Java OOP Activity · Spring 2026**  
-> *Dr. ABBOUD*
 
 A Java project built around **inheritance** and **object-oriented design**, modelling a company's employee management system.
 

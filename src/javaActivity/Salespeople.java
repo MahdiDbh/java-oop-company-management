@@ -1,53 +1,25 @@
 package javaActivity;
 
-/**
- * Represents a salesperson employee.
- *
- * In addition to the base salary, salespeople earn a commission
- * based on their monthly sales figure.
- *
- * Assumption: commission rate is 5% of monthly sales.
- * This felt like a reasonable default — it can easily be changed
- * by updating COMMISSION_RATE.
- *
- * Extends Employee.
- */
+// A salesperson: base salary + commission on monthly sales
 public class Salespeople extends Employee {
 
-    // Total sales amount for the current month (in euros)
-    private double monthlySales;
+    private double monthlySales; // total sales for the month in euros
 
-    // 5% commission on sales — assumption documented here
-    private static final double COMMISSION_RATE = 0.05;
+    private static final double COMMISSION_RATE = 0.05; // 5% commission
 
-    /**
-     * Constructor.
-     *
-     * @param name         the salesperson's name
-     * @param id           unique employee ID
-     * @param hr           hourly rate category
-     * @param monthlySales total sales this month in euros
-     */
+    // Constructor
     public Salespeople(String name, int id, hourlyRate hr, double monthlySales) {
         super(name, id, hr);
         this.monthlySales = monthlySales;
     }
 
-    // --- Getter / Setter ---
-
-    public double getMonthlySales() { return monthlySales; }
+    // Getter / Setter    public double getMonthlySales() { return monthlySales; }
 
     public void setMonthlySales(double monthlySales) {
         this.monthlySales = monthlySales;
     }
 
-    /**
-     * Overrides calculateSalary() to include sales commission.
-     *
-     * Total Salary = base salary + (5% * monthlySales)
-     *
-     * @return total monthly salary including commission
-     */
+    // Total salary = base salary + 5% of monthly sales
     @Override
     public double calculateSalary() {
         double baseSalary = super.calculateSalary();
@@ -55,9 +27,7 @@ public class Salespeople extends Employee {
         return baseSalary + commission;
     }
 
-    /**
-     * Prints the salesperson's details including sales figures.
-     */
+    // Prints salesperson details (sales + commission)
     public void printSalespeopleDetails() {
         System.out.println("==============================");
         System.out.println("SALESPERSON");
@@ -71,9 +41,6 @@ public class Salespeople extends Employee {
         System.out.printf( "Total Salary  : %.2f EUR%n", calculateSalary());
     }
 
-    /**
-     * Override displayEmpInfo() to show salesperson-specific details.
-     */
     @Override
     public void displayEmpInfo() {
         printSalespeopleDetails();

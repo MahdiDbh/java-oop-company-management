@@ -1,6 +1,8 @@
 # Compiled output
 out/
 *.class
+src/
+*.class
 
 # IDE files
 .idea/

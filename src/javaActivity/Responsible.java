@@ -2,56 +2,33 @@ package javaActivity;
 
 import java.util.ArrayList;
 
-/**
- * Represents an employee with managerial responsibilities.
- *
- * A Responsible has a job title (e.g. "Team Leader") and a list
- * of direct subordinates. Subordinates are stored as Employee objects
- * so they can be any type (regular, salesperson, or even another responsible).
- *
- * Extends Employee.
- */
+// A manager: employee with a job title and a list of subordinates
 public class Responsible extends Employee {
 
     private String title;
 
-    // Direct subordinates managed by this responsible
-    private ArrayList<Employee> subordinates;
+    private ArrayList<Employee> subordinates; // direct subordinates
 
-    /**
-     * Constructor.
-     *
-     * @param name  the manager's name
-     * @param id    unique employee ID
-     * @param hr    hourly rate category
-     * @param title the job title / role of this responsible
-     */
+    // Constructor
     public Responsible(String name, int id, hourlyRate hr, String title) {
         super(name, id, hr);
         this.title        = title;
         this.subordinates = new ArrayList<>();
     }
 
-    // --- Getters ---
-
+    // Getters
     public String getTitle() { return title; }
 
     public ArrayList<Employee> getSubordinates() { return subordinates; }
 
-    /**
-     * Adds a direct subordinate. Ignores null and duplicate entries.
-     *
-     * @param e the employee to add as a subordinate
-     */
+    // Adds a subordinate (ignores null and duplicates)
     public void addSubordinate(Employee e) {
         if (e != null && !subordinates.contains(e)) {
             subordinates.add(e);
         }
     }
 
-    /**
-     * Prints all direct subordinates to the console.
-     */
+    // Prints the list of subordinates
     public void printSubordinates() {
         System.out.println("  Subordinates of " + name + " (" + title + "):");
         if (subordinates.isEmpty()) {
@@ -63,10 +40,7 @@ public class Responsible extends Employee {
         }
     }
 
-    /**
-     * Prints the responsible's full details:
-     * personal info + title + list of subordinates.
-     */
+    // Prints full manager info + their subordinates
     public void printResponsibleDetails() {
         System.out.println("==============================");
         System.out.println("RESPONSIBLE");
@@ -78,9 +52,6 @@ public class Responsible extends Employee {
         printSubordinates();
     }
 
-    /**
-     * Override displayEmpInfo() to show full responsible details.
-     */
     @Override
     public void displayEmpInfo() {
         printResponsibleDetails();
